@@ -1,9 +1,9 @@
 import { z } from 'zod'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
-import { createGoalCompletion } from '../../functions/create-goal-completion'
+import { deleteGoalCompletion } from '../../functions/delete-goal-completion'
 
-export const createGoalCompletionRoute: FastifyPluginAsyncZod = async app => {
-  app.post(
+export const deleteGoalCompletionRoute: FastifyPluginAsyncZod = async app => {
+  app.delete(
     '/completions',
     {
       schema: {
@@ -14,7 +14,7 @@ export const createGoalCompletionRoute: FastifyPluginAsyncZod = async app => {
     },
     async request => {
       const { goalId } = request.body
-      await createGoalCompletion({
+      await deleteGoalCompletion({
         goalId,
       })
     }
